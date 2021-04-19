@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "482403321679",
+    "project_id": "fluttertodoapp-e165e",
+    "storage_bucket": "fluttertodoapp-e165e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482403321679:android:c507e866d3e1c64b38273a",
+        "android_client_info": {
+          "package_name": "live.codecoffee.code_coffe_todo_list"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482403321679-ds75litprutgf4atatogmrngp39sv4au.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGCfJj_EueQ-hw0iS0NQ4ueqqzN4pSOKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482403321679-ds75litprutgf4atatogmrngp39sv4au.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
