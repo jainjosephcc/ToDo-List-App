@@ -3,11 +3,9 @@ import 'package:code_coffe_todo_list/widgets/toastWidget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
 
 // ignore: must_be_immutable
 class LoginSignUpPage extends StatefulWidget {
-
   @override
   _LoginSignUpPageState createState() => _LoginSignUpPageState();
 }
@@ -16,9 +14,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  ToastDisplayWidget toastWidget=new ToastDisplayWidget();
-  bool _success;
-  String _userEmail;
+  ToastDisplayWidget toastWidget = new ToastDisplayWidget();
 
   @override
   void dispose() {
@@ -32,24 +28,27 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
       final User user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
-      )).user;
+      ))
+          .user;
       if (user != null) {
         toastWidget.successToast('Successfully Logged in !', context);
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
-          return LandingPage();}));
+          return LandingPage();
+        }));
       }
     } on FirebaseAuthException catch (e) {
       print(e.code);
       if (e.code == 'user-not-found') {
         toastWidget.errorToast('No user found for that email !', context);
       } else if (e.code == 'wrong-password') {
-        toastWidget.errorToast('Wrong password provided for that user !', context);
-      }else if (e.code == 'invalid-email') {
+        toastWidget.errorToast(
+            'Wrong password provided for that user !', context);
+      } else if (e.code == 'invalid-email') {
         toastWidget.errorToast('Invalid Email', context);
       }
     }
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,21 +58,23 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(15,0,15,0),
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                 child: Form(
                   key: _formKey,
                   child: ListView(
                     shrinkWrap: true,
                     children: <Widget>[
                       Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.all(10),
-                          child: Hero(
-                            tag: 'imageHero',
-                            child: Image.asset(
-                              'assets/images/wattodo_logo.png',width: MediaQuery.of(context).size.width * 0.4,
-                            ),
-                          ),),
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(10),
+                        child: Hero(
+                          tag: 'imageHero',
+                          child: Image.asset(
+                            'assets/images/wattodo_logo.png',
+                            width: MediaQuery.of(context).size.width * 0.4,
+                          ),
+                        ),
+                      ),
                       Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(10),
@@ -130,25 +131,29 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
                         ),
                       ),
                       FlatButton(
-                        onPressed: (){
+                        onPressed: () {
                           //forgot password screen
                         },
-                        textColor:Color(0xFF84A4FD),
+                        textColor: Color(0xFF84A4FD),
                         child: Text('Forgot Password'),
                       ),
                       Container(
                           height: 50,
                           padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                           child: RaisedButton(
-                            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0)),
                             textColor: Colors.white,
                             color: Color(0xFF84A4FD),
-                            child: Text('Login',style: TextStyle(
-                              fontSize: 20.0,
-                              fontFamily: "Roboto",
-                              color: Colors.white,
-                              fontWeight: FontWeight.w300,
-                            ),),
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontFamily: "Roboto",
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
                                 _signInWithEmailAndPassword();
@@ -157,23 +162,27 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
                           )),
                       Container(
                           child: Row(
-                            children: <Widget>[
-                              Text('Does not have account?'),
-                              FlatButton(
-                                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                                textColor: Color(0xFF84A4FD),
-                                child: Text(
-                                  'Sign Up',
-                                  style: TextStyle(fontSize: 20,fontFamily: "Roboto",),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context)
-                                      .pushNamedAndRemoveUntil('/signUp', (Route<dynamic> route) => false);
-                                },
-                              )
-                            ],
-                            mainAxisAlignment: MainAxisAlignment.center,
-                          ))
+                        children: <Widget>[
+                          Text('Does not have account?'),
+                          FlatButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0)),
+                            textColor: Color(0xFF84A4FD),
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: "Roboto",
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  '/signUp', (Route<dynamic> route) => false);
+                            },
+                          )
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.center,
+                      ))
                     ],
                   ),
                 ),
@@ -181,9 +190,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
             ],
           ),
         ),
-        onTap: () {
-
-        },
+        onTap: () {},
       ),
     );
   }
