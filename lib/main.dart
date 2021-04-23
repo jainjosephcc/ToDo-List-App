@@ -1,9 +1,13 @@
 import 'package:code_coffe_todo_list/pages/loginSignupPage.dart';
 import 'package:code_coffe_todo_list/pages/logoAnimPage.dart';
 import 'package:code_coffe_todo_list/pages/signUpPage.dart';
+import 'package:code_coffe_todo_list/screens/class_builder.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(HeroApp());
+void main(){
+  ClassBuilder.registerClasses();
+  runApp(HeroApp());
+}
 
 class HeroApp extends StatelessWidget {
   @override
